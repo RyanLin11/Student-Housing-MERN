@@ -1,0 +1,23 @@
+.card-image {
+    width: 100%;
+    overflow: hidden;
+}
+
+.card-container {
+    border: 1px solid black;
+    margin-bottom: 1em;
+}
+
+.card-title {
+    text-align: left;
+    font-size: 2rem;
+}
+
+.card-address {
+    text-align: left;
+    font-size: .9em;
+}
+
+.card-description {
+    text-align: left;
+}
