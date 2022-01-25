@@ -49,13 +49,9 @@ const SuiteSchema = new mongoose.Schema({
         type: [ObjectId],
         ref: "Photo",
     },
-    listings: {
-        type: [ObjectId],
-        ref: "Listing",
-    }
 });
 
-SuiteSchema.pre('deleteOne', {document:true, query:false}, function(next) {
+SuiteSchema.pre('deleteOne', {document:true, query:false}, async function(next) {
     //Delete Photos
     if(this.photos) {
         this.photos.forEach(photo_id => {
@@ -63,12 +59,10 @@ SuiteSchema.pre('deleteOne', {document:true, query:false}, function(next) {
             photo.deleteOne();
         })
     }
-    //Delete Listings
-    if(this.listings) {
-        this.listings.forEach(listing_id => {
-            const listing = ListingModel.findById(listing_id);
-            listing.deleteOne();
-        })
+    // Delete Listings
+    let listings = await ListingModel.find({suite: this._id});
+    for(listing of listings) {
+        listing.deleteOne();
     }
     next();
 });

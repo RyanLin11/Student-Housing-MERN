@@ -11,22 +11,17 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 //Importing Routers
-const authRouter = require('./routes/auth');
-const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const listingRouter = require('./routes/listing');
 const propertyRouter = require('./routes/property');
 const suiteRouter = require('./routes/suite');
 
-//Importing Models
-const UserModel = require('./models/user');
-
 //Initiating App
 var app = express();
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+//cors
+const cors = require('cors');
+app.use(cors());
 
 // Settings setup
 app.use(logger('dev'));
@@ -52,10 +47,10 @@ app.use(session({
 }))
 
 // Authentication
-app.use('/', authRouter);
+//app.use('/', authRouter);
 
 //Redirect to login if not signed in, and passing in user information to locals if logged in
-app.all(['/', '/*', '*'], async function(req, res, next) {
+/*app.all(['/', '/*', '*'], async function(req, res, next) {
   if(!req.session.loggedIn) {
     res.redirect('/login');
   } else {
@@ -64,20 +59,19 @@ app.all(['/', '/*', '*'], async function(req, res, next) {
     res.locals.username = res.locals.user.username;
     next();
   }
-})
+})*/
 
 // Router middleware
-app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/listing', listingRouter);
-app.use('/property', propertyRouter);
-app.use('/suite', suiteRouter);
+app.use('/listings', listingRouter);
+app.use('/properties', propertyRouter);
+app.use('/suites', suiteRouter);
 
 // Connecting to the Database
 mongoose.connect(process.env.ATLAS_URL);
-app.listen(3000, () => {
-  console.log("Server is running at port 3000");
-})
+/*app.listen(5000, () => {
+  console.log("Server is running at port 5000");
+})*/
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -92,7 +86,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.send(res.locals.message);
 });
 
 module.exports = app;
