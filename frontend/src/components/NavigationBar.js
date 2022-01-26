@@ -11,7 +11,7 @@ class NavigationBar extends React.Component {
                     <Nav className="me-auto">
                         <Nav.Link href="/">Home</Nav.Link>
                         <Nav.Link href="/listings">Listings</Nav.Link>
-                        <Nav.Link href="#pricing">Pricing</Nav.Link>
+                        <Nav.Link href="/listings/add">Add Listing</Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>

@@ -40,7 +40,7 @@ router.route('/')
         body('suite').custom(value => {
             return SuiteModel.findById(value).then(suite => {
                 if(!suite) {
-                    return Promise.reject('No building found.');
+                    return Promise.reject('No suite found.');
                 }
             })
         })],

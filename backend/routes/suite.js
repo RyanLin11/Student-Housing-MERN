@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const SuiteModel = require('../models/suite');
 const _ = require('lodash');
-const {query} = require('express-validator');
+const {query, body, validationResult} = require('express-validator');
 const BuildingModel = require('../models/building');
 
 // REST API Endpoints
@@ -23,14 +23,38 @@ router.route('/')
             }
             res.status(200).send(suites);
         })
-    .post(async function(req, res) {
-        try {
-            const suite = new SuiteModel(req.body);
-            res.status(201).send(suite);
-        } catch(error) {
-            res.status(400).send(error);
-        }
-    })
+    .post([
+        body('building').custom(
+            async(value) => {
+                const building = await BuildingModel.findById(value);
+                if(!building) {
+                    throw new Error('Invalid Property ID: Does not exist');
+                }
+            }
+        ),
+        body('suite_no').custom(
+            async(value, {req}) => {
+                const suite = await SuiteModel.findOne({building: req.body.building, suite_no: value});
+                if(suite) {
+                    throw new Error('Suite already exists');
+                }
+            }
+        ),
+        ],
+        async function(req, res) {
+            const validationErrors = validationResult(req);
+            if(validationErrors) {
+                res.status(400).send(validationErrors.mapped());
+            } else {
+                try {
+                    const suite = new SuiteModel(req.body);
+                    await suite.save();
+                    res.status(201).send(suite);
+                } catch(error) {
+                    res.status(400).send(error);
+                }
+            }
+        })
 
 router.param('id', async function(req, res, next, id) {
     try {
