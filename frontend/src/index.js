@@ -5,8 +5,10 @@ import App from './App';
 import Home from './components/Home';
 import Listing from './components/Listing';
 import Listings from './components/Listings';
-import ListingForm from './components/ListingForm';
+import ListingForm from './forms/ListingForm';
 import ListingPage from './components/ListingPage';
+import Register from './auth/Register';
+import Login from './auth/Login';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 
@@ -22,6 +24,8 @@ ReactDOM.render(
             <Route path=':listingId' element={<Listing />} />
             <Route path='*' element={<h1>Page Not Found</h1>} />
           </Route>
+          <Route path='register' element={<Register />} />
+          <Route path='login' element={<Login />} />
           <Route path='*' element={<h1>Page not found</h1>} />
         </Route>
       </Routes>

@@ -92,16 +92,21 @@ router.route('/:id')
 
 router.post(
   '/login', 
-  body('username').trim().escape(),
+  body('username').trim().escape().custom(async (value) => {
+    const user = await UserModel.findOne({username: value});
+    if (!user) {
+      throw new Error('User not found.');
+    }
+  }),
   body('password').escape().custom((password, {req}) => {
       return UserModel.findOne({username: req.body.username}).then(async function(user) {
           if(user) {
               const result = await user.comparePassword(password);
               if(!result) {
-                  return Promise.reject("Incorrect Password");
+                  return Promise.reject("Incorrect Password.");
               }
           } else {
-              return Promise.reject("No such user found");
+              return Promise.reject("User not found.");
           }
       })
   }),

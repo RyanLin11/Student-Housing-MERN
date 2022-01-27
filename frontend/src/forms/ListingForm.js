@@ -36,7 +36,7 @@ function ListingForm(props) {
     const [Wifi, setWifi] = useState(false);
     const [PetsAllowed, setPetsAllowed] = useState(false);
     const [Smoking, setSmoking] = useState(false);
-
+    const [SubmitListing, setSubmitListing] = useState(false);
 
     useEffect(() => {
         async function fetchProperties() {
@@ -90,7 +90,6 @@ function ListingForm(props) {
                     dining_area: DiningArea,
                     couches: Couches,
                 };
-                console.log(requestBody);
                 try {
                     // Creating the New Suite
                     const response = await axios.post(`${process.env.REACT_APP_API_URL}/suites`, requestBody);
@@ -189,7 +188,7 @@ function ListingForm(props) {
                         <Form.Check type='checkbox' id='Dishwasher' label='Dishwasher' checked={Dishwasher} onChange={()=>setDishwasher(!Dishwasher)}/>
                         <Form.Check type='checkbox' id='Television' label='Television' checked={Television} onChange={()=>setTelevision(!Television)}/>
                         <Form.Check type='checkbox' id='Laundry' label='Laundry' checked={Laundry} onChange={()=>setLaundry(!Laundry)}/>
-                        <Form.Check type='checkbox' id='Dining Area' label='Dining Area' checked={DiningArea} onChange={()=>setDiningArea(!DiningArea)} />
+                        <Form.Check type='checkbox' id='DiningArea' label='Dining Area' checked={DiningArea} onChange={()=>setDiningArea(!DiningArea)} />
                         <Form.Check type='checkbox' id='Couches' label='Couches' checked={Couches} onChange={()=>setCouches(!Couches)}/>
                         <Button variant="primary" onClick={()=>setSubmitSuite(!SubmitSuite)}>Submit Suite</Button>
                     </Container>
@@ -208,15 +207,30 @@ function ListingForm(props) {
                             <InputGroup.Text>.00</InputGroup.Text>
                         </InputGroup>
 
+                        <InputGroup className='mb-3'>
+                            <InputGroup.Text><i class="bi bi-calendar-event"></i></InputGroup.Text>
+                            <Form.Control type='date' placeholder='Move In Date' aria-label='Move In Date' value={MoveInDate} onChange={(e)=>{setMoveInDate(e.target.value)}}/>
+                        </InputGroup>
+
+                        <InputGroup className='mb-3'>
+                            <InputGroup.Text><i class="bi bi-calendar-event-fill"></i></InputGroup.Text>
+                            <Form.Control type='date' placeholder='Move Out Date' aria-label='Move Out Date' value={MoveOutDate} onChange={(e)=>{setMoveOutDate(e.target.value)}}/>
+                        </InputGroup>
+
+                        <InputGroup className='mb-3'>
+                            <InputGroup.Text><i class="bi bi-border"></i></InputGroup.Text>
+                            <Form.Control type='number' placeholder='Room Size' aria-label='Room Size' value={RoomSize} onChange={(e)=>{setRoomSize(e.target.value)}}/>
+                        </InputGroup>
+
                         <h2>Room Amenities</h2>
-                        <Form.Check type='checkbox' label='Window' checked={Window} onChange={()=>setWindow(!Window)} />
-                        <Form.Check type='checkbox' label='Bathroom' checked={Bathroom} onChange={()=>setBathroom(!Bathroom)} />
-                        <Form.Check type='checkbox' label='Air Conditioning' checked={AC} onChange={()=>setAC(!AC)} />
-                        <Form.Check type='checkbox' label='Heating' checked={Heating} onChange={()=>setHeating(!Heating)} />
-                        <Form.Check type='checkbox' label='Wifi' checked={Wifi} onChange={()=>setWifi(!Wifi)} />
-                        <Form.Check type='checkbox' label='Pets Allowed' checked={PetsAllowed} onChange={()=>setPetsAllowed(!PetsAllowed)} />
-                        <Form.Check type='checkbox' label='Smoking' checked={Smoking} onChange={()=>setSmoking(!Smoking)} />
-                        <Button variant="primary">Post Listing</Button>
+                        <Form.Check type='checkbox' id='Window' label='Window' checked={Window} onChange={()=>setWindow(!Window)} />
+                        <Form.Check type='checkbox' id='Bathroom' label='Bathroom' checked={Bathroom} onChange={()=>setBathroom(!Bathroom)} />
+                        <Form.Check type='checkbox' id='AirConditioning' label='Air Conditioning' checked={AC} onChange={()=>setAC(!AC)} />
+                        <Form.Check type='checkbox' id='Heating' label='Heating' checked={Heating} onChange={()=>setHeating(!Heating)} />
+                        <Form.Check type='checkbox' id='Wifi' label='Wifi' checked={Wifi} onChange={()=>setWifi(!Wifi)} />
+                        <Form.Check type='checkbox' id='PetsAllowed' label='Pets Allowed' checked={PetsAllowed} onChange={()=>setPetsAllowed(!PetsAllowed)} />
+                        <Form.Check type='checkbox' id='Smoking' label='Smoking' checked={Smoking} onChange={()=>setSmoking(!Smoking)} />
+                        <Button variant="primary" onClick={()=>setSubmitListing(!SubmitListing)}>Post Listing</Button>
                     </Container>
                 }
             </Form>
