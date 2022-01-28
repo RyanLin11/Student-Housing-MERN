@@ -15,6 +15,7 @@ class FilterList extends React.Component {
                             address={`Suite ${listing.suite.suite_no}, Room ${listing.room_no}`} 
                             price={listing.price} 
                             link={listing._id}
+                            titleLink={listing.suite.building.website}
                             />
                     ) : "Hello"
                 }

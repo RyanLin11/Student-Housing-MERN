@@ -1,23 +1,89 @@
-.card-image {
-    width: 100%;
-    overflow: hidden;
-}
+/* --------Overall Card Styling ---------------- */
 
 .card-container {
     border: 1px solid black;
-    margin-bottom: 1em;
+    margin-bottom: .5em;
+    min-height: max(200px, 10vw);
+    border-radius: 10px;
 }
+
+.card-container:hover {
+    box-shadow: 2px 2px 2px 2px grey;
+}
+
+/* ----------- Card Image -------------------- */
+
+.card-image {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.like-button {
+    font-size: 1.5em;
+    display: none;
+}
+
+.card-container:hover .like-button {
+    display: block;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    right: 8px;
+    font-size: 1.6em;
+    color: white;
+}
+
+/* --------- Main Content of Card ------------ */
+
+.card-main {
+    margin-top: .3em;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header of the Card */
 
 .card-title {
     text-align: left;
-    font-size: 2rem;
+    font-size: calc(1em + 0.5vw);
 }
 
-.card-address {
+.card-title-link {
+    text-decoration: none,
+}
+
+/* Subheading */
+
+.card-subheading {
     text-align: left;
-    font-size: .9em;
+    font-size: calc(.6em + .25vw);
+}
+
+.card-subheading > .card-properties {
+    margin-right: calc(.5em + .25vw);
+}
+
+/* Description */
+
+.card-content {
+    flex-grow: 1;
+    padding-top: 1em;
 }
 
 .card-description {
     text-align: left;
+    font-size: calc(.6em + .25vw);
+}
+
+.activate-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.activate {
+    justify-self: flex-end;
+    align-self: flex-end;
+    margin-bottom: 1em;
 }

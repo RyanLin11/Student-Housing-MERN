@@ -1,0 +1,26 @@
+/* Intro Banner */
+
+.banner {
+    background-image: url('https://capscanada.org/wp-content/uploads/2021/01/Waterloo-1-scaled.jpg');
+    background-size: cover;
+    background-position: top;
+    height: 60vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner-text {
+    color: white;
+}
+
+.banner-title {
+    margin-bottom: 1em;
+    font-size: 3em;
+}
+
+#find-housing-button {
+    margin-right: 2em;
+}
