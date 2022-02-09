@@ -11,7 +11,7 @@ class SuitePage extends React.Components {
         }
     }
     async componentDidMount() {
-        const response = await axios.get(`http://localhost:5000/suites/${this.props.id}`);
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/suites/${this.props.id}`);
         this.setState({
             suite: response.data,
         });
@@ -22,7 +22,7 @@ class SuitePage extends React.Components {
                 <h1>Suite {suite.suite_no}</h1>
                 <p>Floor {suite.floor}</p>
                 <br />
-                <Carousel photos={suite.photos.map(photo => photo_url)}/>
+                <Carousel photos={suite.photos.map(photo => photo.photo_url)}/>
                 <h2>Amenities</h2>
                 <Button>Edit Suite</Button>
             </Container>

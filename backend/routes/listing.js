@@ -5,7 +5,6 @@ const SuiteModel = require('../models/suite');
 const UserModel = require('../models/user');
 const _ = require('lodash');
 const {query, body, validationResult} = require('express-validator');
-const mongoose = require('mongoose');
 
 // REST APIs
 router.route('/')

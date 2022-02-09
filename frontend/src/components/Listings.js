@@ -1,5 +1,4 @@
 import React from 'react';
-import './Listings.css';
 import {Container} from 'react-bootstrap';
 import {Outlet} from 'react-router-dom';
 

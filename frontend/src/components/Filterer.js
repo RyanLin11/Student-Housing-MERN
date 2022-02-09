@@ -16,7 +16,6 @@ class Filterer extends React.Component {
         this.setState({[e.target.name]: e.target.value});
     }
     handleSubmit() {
-        // POST Data to Backend
         this.props.handleSubmit(this.state);
     }
     render() {
@@ -27,11 +26,6 @@ class Filterer extends React.Component {
                     <option value='-price'>Price (High to Low)</option>
                     <option value='price'>Price (Low to High)</option>
                 </Form.Select>
-                {/*<Form.Label>Min. Price</Form.Label>
-                <Form.Range name='min-price' value={this.state.minprice} onChange={this.handleChange} min="0" max="100"/>
-                <Form.Label>Max. Price</Form.Label>
-                <Form.Range name='max-price' value={this.state.maxprice} onChange={this.handleChange} min="0" max="100" />
-                <Button>Filter</Button>*/}
                 <Button onClick={this.handleSubmit}>Filter</Button>
             </form>
         )

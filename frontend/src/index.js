@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from './base/App';
 import Home from './components/Home';
-import Listing from './components/Listing';
 import Listings from './components/Listings';
 import ListingForm from './forms/ListingForm';
 import ListingPage from './components/ListingPage';
@@ -21,9 +20,9 @@ ReactDOM.render(
           <Route path='listings/' element={<Listings />}>
             <Route index element={<ListingPage />} />
             <Route path='add' element={<ListingForm />} />
-            <Route path=':listingId' element={<Listing />} />
             <Route path='*' element={<h1>Page Not Found</h1>} />
           </Route>
+          
           <Route path='register' element={<Register />} />
           <Route path='login' element={<Login />} />
           <Route path='*' element={<h1>Page not found</h1>} />

@@ -13,11 +13,11 @@ class ListingPage extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     async componentDidMount(){
-        const response = await axios.get(`http://127.0.0.1:5000/listings`);
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/listings`);
         this.setState({listings: response.data});
     }
     async handleSubmit(options) {
-        const response = await axios.get(`http://127.0.0.1:5000/listings?${new URLSearchParams(options).toString()}`);
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/listings?${new URLSearchParams(options).toString()}`);
         this.setState({listings: response.data});
     }
     render() {

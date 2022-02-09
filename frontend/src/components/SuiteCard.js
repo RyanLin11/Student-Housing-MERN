@@ -1,9 +1,9 @@
 import React from 'react';
-import {Row, Col, Button, Container} from 'react-bootstrap';
+import {Row, Col, Button} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
-import './Card.css';
+import './SuiteCard.css';
 
-class Card extends React.Component {
+class SuiteCard extends React.Component {
     render() {
         return (
             <Row className='card-container'>
@@ -35,7 +35,7 @@ class Card extends React.Component {
                         </Col>
                         <Col xs="3" className='activate-container'>
                             <div className='activate'>
-                                <p>1 suite left at</p>
+                                <p>1 room left at</p>
                                 <Link to={this.props.link}><Button>${this.props.price} / mo</Button></Link>
                             </div>
                         </Col>
@@ -46,4 +46,4 @@ class Card extends React.Component {
     }
 }
 
-export default Card;
+export default SuiteCard;
