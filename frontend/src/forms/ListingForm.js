@@ -219,22 +219,22 @@ function ListingForm(props) {
                     <Container>
                         <InputGroup className="mb-3">
                             <InputGroup.Text><i className="bi bi-door-closed"></i></InputGroup.Text>
-                            <Form.Control type='number' placeholder='Suite No.' aria-label='Suite No.' name='suite_no' value={Listing['suite_no']} onChange={handleSuiteChange}/>
+                            <Form.Control type='number' placeholder='Suite No.' aria-label='Suite No.' name='suite_no' value={Suite['suite_no']} onChange={handleSuiteChange}/>
                         </InputGroup>
 
                         <InputGroup className='mb-3'>
                             <InputGroup.Text><i class="bi bi-stack"></i></InputGroup.Text>
-                            <Form.Control type='number' placeholder='Floor No.' aria-label='Floor No.' name='floor' value={Listing['floor']} onChange={handleSuiteChange}/>
+                            <Form.Control type='number' placeholder='Floor No.' aria-label='Floor No.' name='floor' value={Suite['floor']} onChange={handleSuiteChange}/>
                         </InputGroup>
 
                         <h2>Suite Amenities</h2>
-                        <Form.Check type='checkbox' id='Stove' label='Stove' name='stove' checked={Listing["stove"]} onChange={handleSuiteChange}/>
-                        <Form.Check type='checkbox' id='Microwave' label='Microwave' name='microwave' checked={Listing['microwave']} onChange={handleSuiteChange}/>
-                        <Form.Check type='checkbox' id='Dishwasher' label='Dishwasher' name='dishwasher' checked={Listing['dishwasher']} onChange={handleSuiteChange}/>
-                        <Form.Check type='checkbox' id='Television' label='Television' name='television' checked={Listing['television']} onChange={handleSuiteChange}/>
-                        <Form.Check type='checkbox' id='Laundry' label='Laundry' name='laundry' checked={Listing['laundry']} onChange={handleSuiteChange}/>
-                        <Form.Check type='checkbox' id='DiningArea' label='Dining Area' name='dining_area' checked={Listing['dining_area']} onChange={handleSuiteChange} />
-                        <Form.Check type='checkbox' id='Couches' label='Couches' name='couches' checked={Listing['couches']} onChange={handleSuiteChange}/>
+                        <Form.Check type='checkbox' id='Stove' label='Stove' name='stove' checked={Suite["stove"]} onChange={handleSuiteChange}/>
+                        <Form.Check type='checkbox' id='Microwave' label='Microwave' name='microwave' checked={Suite['microwave']} onChange={handleSuiteChange}/>
+                        <Form.Check type='checkbox' id='Dishwasher' label='Dishwasher' name='dishwasher' checked={Suite['dishwasher']} onChange={handleSuiteChange}/>
+                        <Form.Check type='checkbox' id='Television' label='Television' name='television' checked={Suite['television']} onChange={handleSuiteChange}/>
+                        <Form.Check type='checkbox' id='Laundry' label='Laundry' name='laundry' checked={Suite['laundry']} onChange={handleSuiteChange}/>
+                        <Form.Check type='checkbox' id='DiningArea' label='Dining Area' name='dining_area' checked={Suite['dining_area']} onChange={handleSuiteChange} />
+                        <Form.Check type='checkbox' id='Couches' label='Couches' name='couches' checked={Suite['couches']} onChange={handleSuiteChange}/>
                         <Button variant="primary" onClick={()=>setSubmitSuite(!SubmitSuite)}>Submit Suite</Button>
                     </Container>
                 }
