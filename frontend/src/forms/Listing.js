@@ -6,10 +6,10 @@ import * as yup from 'yup';
 
 const SCHEMA = yup.object({
     price: yup.number().required(),
-    moveInDate: yup.date().required(),
-    moveOutDate: yup.date().required(),
-    leaser: yup.string().uuid().required(),
-    suite: yup.string().uuid().required(),
+    moveInDate: yup.string().required(),
+    moveOutDate: yup.string().required(),
+    leaser: yup.string().uuid(),
+    suite: yup.string().uuid(),
     room_no: yup.number().required(),
     room_size: yup.number(),
     window: yup.boolean(),

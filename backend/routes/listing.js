@@ -61,7 +61,7 @@ router.route('/')
 router.param('id', async function(req, res, next, id) {
     try {
         const listing = await ListingModel.findById(id).populate({path: 'suite', populate: {path: 'building'}});
-        if(listing) {
+        if (listing) {
             req.listing = listing;
         } else {
             next(new Error('Listing not found'));

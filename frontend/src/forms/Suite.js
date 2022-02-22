@@ -6,7 +6,7 @@
 
 // Suite Schema for Validation
 const SCHEMA = yup.object({
-    building: yup.string().uuid().required(),
+    building: yup.string().uuid(),
     suite_no: yup.number().required(),
     floor: yup.number().required(),
     stove: yup.boolean(),

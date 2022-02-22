@@ -8,7 +8,7 @@ const BuildingModel = require('../models/building');
 // REST API Endpoints
 router.route('/')
     .get([query('sort').isString().isIn(_.keysIn(BuildingModel.schema.paths))],
-        async function(req, res) {
+        async function (req, res) {
             // Filtering in Query Parameter
             const filters = _.pick(req.query, _.keysIn(SuiteModel.schema.paths));
             let suites = await SuiteModel.find(filters);
@@ -33,9 +33,9 @@ router.route('/')
             }
         ),
         body('suite_no').custom(
-            async(value, {req}) => {
+            async (value, {req}) => {
                 const suite = await SuiteModel.findOne({building: req.body.building, suite_no: value});
-                if(suite) {
+                if (suite) {
                     throw new Error('Suite already exists');
                 }
             }
@@ -43,23 +43,23 @@ router.route('/')
         ],
         async function(req, res) {
             const validationErrors = validationResult(req);
-            if(validationErrors) {
-                res.status(400).send(validationErrors.mapped());
-            } else {
+            if (validationErrors.isEmpty()) {
                 try {
                     const suite = new SuiteModel(req.body);
                     await suite.save();
                     res.status(201).send(suite);
-                } catch(error) {
+                } catch (error) {
                     res.status(400).send(error);
                 }
+            } else {
+                res.status(400).send(validationErrors.mapped());
             }
         })
 
 router.param('id', async function(req, res, next, id) {
     try {
         const suite = await SuiteModel.findById(id);
-        if(suite) {
+        if (suite) {
             req.suite = suite;
         } else {
             next(new Error('Suite could not be found'));

@@ -9,11 +9,11 @@ function FormField(props) { //control, name, type, placeholder, label, errors, s
             <Controller
                 control={props.control}
                 name={props.name}
-                render={({ field }) => {
+                render={({ field }) =>
                     <Form.Control type={props.type} placeholder={props.placeholder} aria-label={props.label} {...field} />
-                }}
+                }
             />
-            <InputGroup.Text>{props.after}</InputGroup.Text>
+            {props.after && <InputGroup.Text>{props.after}</InputGroup.Text>}
             <ErrorMessage
                 errors={props.errors}
                 name={props.name}

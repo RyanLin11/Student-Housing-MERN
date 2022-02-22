@@ -1,14 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const BuildingModel = require('../models/building');
-const {query, body, ValidationResult} = require('express-validator');
+const {query, body, validationResult} = require('express-validator');
 const _ = require('lodash');
 const axios = require('axios');
 
 // Rest APIs
 router.route('/')
     .get([query('sort').isString().isIn(_.keysIn(BuildingModel.schema.paths))],
-        async function(req, res) {
+        async function (req, res) {
             // Filtering in Query Parameter
             const filters = _.pick(req.query, _.keysIn(BuildingModel.schema.paths));
             let properties = await BuildingModel.find(filters);
@@ -31,12 +31,11 @@ router.route('/')
             }
         })],
         async function(req, res) {
-            const validationErrors = ValidationResult(req);
-            if(validationErrors) {
-                res.status(400).send(validationErrors.mapped());
-            } else {
+            const validationErrors = validationResult(req);
+            if(validationErrors.isEmpty()) {
                 try {
                     const response = await axios.get(`https://maps.googleapis.com/maps/api/place/details/json?place_id=${req.body.place_id}&fields=formatted_address,name,geometry,url,photo,formatted_phone_number,website,rating,user_ratings_total&key=${process.env.MAPS_API_KEY}`);
+                    console.log(response);
                     let data = response.data.result;
                     let property_info = {
                         place_id: req.body.place_id,
@@ -57,6 +56,8 @@ router.route('/')
                 } catch(errors) {
                     res.status(500).send(errors);
                 }
+            } else {
+                res.status(400).send(validationErrors.mapped());
             }
         })
 
