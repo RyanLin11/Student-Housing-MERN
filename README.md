@@ -1,6 +1,6 @@
 # Housing For You
 ![Landing Page](https://i.postimg.cc/RVBnpGzy/sh.png)
-![Listing Page](https://postimg.cc/06GS3zfX)
+![Listing Page](https://i.postimg.cc/6Qgh8RGK/ls.png)
 
 ## Inspiration
 Many university students want to live off-campus in their upper years. The accommodations are nicer, close to campus, and in many cases, cheaper than on-campus housing. However, prospective tenants have to sign a one-year lease, even though the average Waterloo co-op student will only live there for four or eight months. Now, they are faced with the struggle to find students to fill their spots. At the same time, other students have trouble finding the right people to lease from. That is where Housing For You comes in to help.
