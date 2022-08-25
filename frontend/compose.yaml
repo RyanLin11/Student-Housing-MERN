@@ -10,6 +10,8 @@ services:
     - frontend_node_modules:/usr/src/app/node_modules
     ports:
     - "3000:3000"
+    environment:
+      REACT_APP_API_URL: "http://localhost:8000"
     working_dir: /usr/src/app
     command: npm start
 

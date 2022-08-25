@@ -11,7 +11,7 @@ services:
     ports:
     - "8000:8000"
     working_dir: /usr/src/app
-    command: nodemon ./bin/www
+    command: bash -c "npm i -g nodemon && nodemon ./bin/www"
 
 volumes:
   backend_node_modules:
