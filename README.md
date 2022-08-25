@@ -1,4 +1,7 @@
 # Housing For You
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/c8f67864-a5a2-4e41-845a-d87680db7e05/deploy-status)](https://app.netlify.com/sites/studenthousing/deploys)
+
 ![Landing Page](https://i.postimg.cc/RVBnpGzy/sh.png)
 ![Listing Page](https://i.postimg.cc/6Qgh8RGK/ls.png)
 
@@ -21,4 +24,4 @@ A website that helps university students put their accommodations up for rent an
 - Image hosting was provided by [AWS S3](https://aws.amazon.com/s3/)
 
 ## Website Link
-[https://studenthousinguw.herokuapp.com](https://studenthousinguw.herokuapp.com)
+[https://studenthousing.netlify.app/](https://studenthousing.netlify.app/)
