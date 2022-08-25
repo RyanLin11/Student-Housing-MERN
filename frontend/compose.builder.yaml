@@ -1,0 +1,26 @@
+version: '2'
+
+services:
+  base:
+    image: node:14
+    volumes:
+    - type: bind
+      source: .
+      target: /usr/src/app
+      consistency: cached
+    - frontend_node_modules:/usr/src/app/node_modules
+    working_dir: /usr/src/app
+  
+  install:
+    extends:
+      service: base
+    command: npm install
+  
+  build:
+    extends:
+      service: base
+    command: npm run build
+
+volumes:
+  frontend_node_modules:
+    external: true
