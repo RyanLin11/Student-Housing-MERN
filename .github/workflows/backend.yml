@@ -1,4 +1,4 @@
-name: Deploy Backend to Heroku
+name: Fly Deploy
 
 on:
   push:
@@ -11,23 +11,12 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  deploy:
+    name: Deploy app
     runs-on: ubuntu-latest
     environment: production
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: akhileshns/heroku-deploy@v3.12.12
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "studenthousingwaterloo"
-          heroku_email: ${{secrets.HEROKU_EMAIL}}
-          usedocker: true
-          appdir: backend
-          branch: master
-        env:
-          ATLAS_URL: ${{secrets.ATLAS_URL}}
-          AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
-          AWS_ACCESS_SECRET: ${{secrets.AWS_ACCESS_SECRET}}
-          AWS_BUCKET_NAME: ${{secrets.AWS_BUCKET_NAME}}
-          SESSION_SECRET: ${{secrets.SESSION_SECRET}}
+      - uses: actions/checkout@v2
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+      - run: flyctl deploy --remote-only
